@@ -90,9 +90,7 @@ Releases are automated with [Changesets](https://github.com/changesets/changeset
 1. In your PR, run `pnpm changeset` and describe the change. CI fails without one if a package changed.
 2. Each PR gets **preview builds** from [pkg.pr.new](https://pkg.pr.new).
 3. When the PR is merged to `main`, the Release workflow opens a **"Version Packages"** PR.
-4. When that PR is merged, the workflow **publishes to npm with provenance** and creates GitHub releases. The [gallery](https://pierrejochem.github.io/porcelana/) redeploys on every push to `main`.
-
-**One-time setup:** create the `porcelana` organisation on npmjs.com, then add a publish token as the `NPM_TOKEN` Actions secret. After the first publish you can switch to npm trusted publishing (OIDC).
+4. When that PR is merged, the workflow **publishes to npm** through [trusted publishing](https://docs.npmjs.com/trusted-publishers) (OIDC, no stored token), with provenance, and creates GitHub releases. The [gallery](https://pierrejochem.github.io/porcelana/) redeploys on every push to `main`.
 
 ## License
 

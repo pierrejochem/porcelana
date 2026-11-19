@@ -10,7 +10,7 @@ concurrency: release-${{ github.ref }}
 permissions:
   contents: write # push version commits and tags
   pull-requests: write # open the "Version Packages" PR
-  id-token: write # npm provenance
+  id-token: write # npm trusted publishing (OIDC) and provenance
 
 jobs:
   release:
@@ -19,11 +19,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
+      # No registry-url here: setup-node would write an .npmrc token line that overrides OIDC.
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
           cache: pnpm
-          registry-url: https://registry.npmjs.org
+      # npm trusted publishing (OIDC) needs npm >= 11.5.1.
+      - run: npm install -g npm@latest && npm --version
       - run: pnpm install --frozen-lockfile
       - name: Verify before releasing
         run: pnpm verify
@@ -37,8 +39,8 @@ jobs:
           commit: "chore: version packages"
           title: "chore: version packages"
           createGithubReleases: true
+        # Publishes with npm trusted publishing: npm exchanges the job's OIDC token
+        # (id-token: write) for a short-lived publish token. No NPM_TOKEN secret is used.
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_CONFIG_PROVENANCE: "true"
