@@ -1,5 +1,14 @@
 # @porcelana/ui
 
+## 0.1.2
+
+### Patch Changes
+
+- [`699979c`](https://github.com/pierrejochem/porcelana/commit/699979c6c83ca9df0155dc470e81c7b7904978b6) Thanks [@pierrejochem](https://github.com/pierrejochem)! - - `SelectTrigger` now picks up the label, description and error from a surrounding `Field`. Before, a Select inside a Field had no accessible name.
+  - `Calendar` day buttons are named starting with their visible number ("23 November 2026, Monday"), so voice-control users can say what they see.
+  - `Breadcrumb` items without `href` render as plain text instead of looking like the current page.
+  - Every prop now has a doc comment, so editors show descriptions on hover.
+
 ## 0.1.1
 
 ### Patch Changes
