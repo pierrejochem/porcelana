@@ -26,6 +26,7 @@ jobs:
           node-version: 22
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      - run: pnpm build
       - run: pnpm --filter @porcelana/ui preview:build
       - uses: actions/upload-pages-artifact@v3
         with:

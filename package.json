@@ -17,7 +17,7 @@
     "version-packages": "changeset version && pnpm install --lockfile-only",
     "release": "pnpm build && changeset publish",
     "preview": "pnpm --filter @porcelana/ui preview",
-    "verify": "pnpm lint && pnpm typecheck && pnpm test:coverage && pnpm build && pnpm check:package"
+    "verify": "pnpm lint && pnpm build && pnpm typecheck && pnpm test:coverage && pnpm check:package"
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.18.2",

@@ -29,9 +29,10 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm lint
+      # Build first: @porcelana/ui resolves @porcelana/icons through its dist output.
+      - run: pnpm build
       - run: pnpm typecheck
       - run: pnpm test:coverage
-      - run: pnpm build
       - name: Check published package shape (publint + are-the-types-wrong)
         run: pnpm check:package
       - name: Upload coverage
