@@ -62,7 +62,7 @@ jobs:
 
   preview-packages:
     name: Preview packages (pkg.pr.new)
-    if: github.event_name == 'pull_request'
+    if: github.event_name == 'pull_request' && github.actor != 'dependabot[bot]'
     needs: verify
     runs-on: ubuntu-latest
     steps:
