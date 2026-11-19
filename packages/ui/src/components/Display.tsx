@@ -65,8 +65,11 @@ export const CardFooter = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivEleme
 
 /* ───── Skeleton ───── */
 export interface SkeletonProps extends HTMLAttributes<HTMLSpanElement> {
+  /** CSS width, e.g. 120 or "70%". */
   width?: CSSProperties["width"];
+  /** CSS height; also the diameter of a circle. */
   height?: CSSProperties["height"];
+  /** Round placeholder, e.g. for an avatar. */
   circle?: boolean;
 }
 /** Loading placeholder. Hidden from assistive tech; announce loading state on the container (aria-busy). */
@@ -87,9 +90,11 @@ export const Skeleton = forwardRef<HTMLSpanElement, SkeletonProps>(function Skel
 
 /* ───── Avatar ───── */
 export interface AvatarProps extends HTMLAttributes<HTMLSpanElement> {
+  /** Image URL. Initials show while it loads or if it fails. */
   src?: string;
   /** Person's name: used for alt text and to derive initials. */
   name: string;
+  /** Diameter in px. */
   size?: number;
   /** Background color of the initials fallback. */
   color?: string;

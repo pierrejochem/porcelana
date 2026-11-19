@@ -40,6 +40,7 @@ export const RadioGroup = forwardRef<
 });
 
 export interface RadioGroupItemProps extends ComponentPropsWithoutRef<typeof RadioPrimitive.Item> {
+  /** Visible label; the whole row is the touch target. */
   label: ReactNode;
 }
 
@@ -61,9 +62,11 @@ export const RadioGroupItem = forwardRef<ElementRef<typeof RadioPrimitive.Item>,
 
 /* ───── Switch ───── */
 export interface SwitchProps extends ComponentPropsWithoutRef<typeof SwitchPrimitive.Root> {
+  /** md is 64 × 36px, lg is 96 × 48px. */
   size?: "md" | "lg";
   /** Visible label rendered as a full-width row; tapping the row toggles. */
   label?: ReactNode;
+  /** Secondary text under the label; becomes the accessible description. */
   description?: ReactNode;
 }
 

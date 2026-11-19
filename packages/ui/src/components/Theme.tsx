@@ -13,6 +13,7 @@ export function useTheme(): Resolved {
 }
 
 export interface ThemeProviderProps extends HTMLAttributes<HTMLDivElement> {
+  /** "light", "night", or "system" to follow the OS dark mode. */
   theme?: ThemeName;
   /** Also set data-theme on <html>, so portalled overlays pick up the theme. Default true. */
   global?: boolean;

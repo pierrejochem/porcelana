@@ -10,9 +10,11 @@ export interface BreadcrumbItem {
 }
 
 export interface BreadcrumbProps extends HTMLAttributes<HTMLElement> {
+  /** Trail from the root to the current page; items without href render as text. */
   items: BreadcrumbItem[];
   /** Custom link renderer for client-side routers. */
   renderLink?: (item: BreadcrumbItem & { href: string }, className: string) => ReactNode;
+  /** Separator between items (hidden from screen readers). Defaults to "/". */
   separator?: ReactNode;
 }
 
@@ -26,10 +28,12 @@ export function Breadcrumb({ items, renderLink, separator = "/", className, ...p
           return (
             <Fragment key={i}>
               <li>
-                {last || !item.href ? (
-                  <span className="pl-breadcrumb-page" aria-current={last ? "page" : undefined}>
+                {last ? (
+                  <span className="pl-breadcrumb-page" aria-current="page">
                     {item.label}
                   </span>
+                ) : !item.href ? (
+                  <span className="pl-breadcrumb-text">{item.label}</span>
                 ) : renderLink ? (
                   renderLink({ ...item, href: item.href }, "pl-breadcrumb-link")
                 ) : (
@@ -73,10 +77,15 @@ export function getPageTokens(page: number, pageCount: number, siblings = 1): Pa
 export interface PaginationProps extends Omit<HTMLAttributes<HTMLElement>, "onChange"> {
   /** Current page, 1-based. */
   page: number;
+  /** Total number of pages. */
   pageCount: number;
+  /** Called with the 1-based page to show. */
   onPageChange: (page: number) => void;
+  /** Pages shown on each side of the current one before an ellipsis. */
   siblingCount?: number;
+  /** Accessible name of the previous button. */
   previousLabel?: string;
+  /** Accessible name of the next button. */
   nextLabel?: string;
   /** Builds each page button's accessible name. */
   pageLabel?: (page: number) => string;

@@ -2,6 +2,7 @@ import { forwardRef, type ComponentPropsWithoutRef, type ElementRef } from "reac
 import { Select as SelectPrimitive } from "radix-ui";
 import { CheckIcon, ChevronDownIcon, ChevronUpIcon } from "@porcelana/icons";
 import { cn } from "../lib/cn";
+import { useField } from "./Field";
 
 export const Select = SelectPrimitive.Root;
 export const SelectGroup = SelectPrimitive.Group;
@@ -11,8 +12,19 @@ export const SelectTrigger = forwardRef<
   ElementRef<typeof SelectPrimitive.Trigger>,
   ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger>
 >(function SelectTrigger({ className, children, ...props }, ref) {
+  // Inside a Field, the label/description/error belong to the trigger button, not the Select root.
+  const field = useField();
+  const describedBy = [props["aria-describedby"], field?.descriptionId, field?.errorId].filter(Boolean).join(" ") || undefined;
   return (
-    <SelectPrimitive.Trigger ref={ref} className={cn("pl-select-trigger", className)} {...props}>
+    <SelectPrimitive.Trigger
+      ref={ref}
+      id={props.id ?? field?.id}
+      aria-describedby={describedBy}
+      aria-invalid={props["aria-invalid"] ?? (field?.invalid || undefined)}
+      aria-required={props["aria-required"] ?? (field?.required || undefined)}
+      className={cn("pl-select-trigger", className)}
+      {...props}
+    >
       {children}
       <SelectPrimitive.Icon asChild>
         <ChevronDownIcon size={18} strokeWidth={2.4} />

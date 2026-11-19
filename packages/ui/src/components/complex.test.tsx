@@ -85,7 +85,7 @@ describe("DatePicker & Calendar", () => {
     await user.click(trigger);
     const grid = await screen.findByRole("grid");
     await expectAccessible(grid);
-    await user.click(screen.getByRole("button", { name: /November 23/ }));
+    await user.click(screen.getByRole("button", { name: /^23 November 2026/ }));
     expect(onChange).toHaveBeenCalledWith(new Date(2026, 10, 23));
     await waitFor(() => expect(screen.queryByRole("grid")).toBeNull());
     expect(trigger).toHaveTextContent("Mon, 23 Nov 2026");
@@ -100,16 +100,21 @@ describe("DatePicker & Calendar", () => {
     expect(trigger).toHaveTextContent("Pick a date");
     await user.click(trigger);
     await screen.findByRole("grid");
-    const sunday = screen.getByRole("button", { name: /November 22/ });
+    const sunday = screen.getByRole("button", { name: /^22 November 2026/ });
     expect(sunday.closest("td")).toHaveAttribute("data-disabled", "true");
     await user.click(sunday);
     expect(onChange).not.toHaveBeenCalled();
     expect(screen.getByRole("button", { name: /next month/i })).toHaveAttribute("aria-disabled", "true");
     // Arrow keys move between days; Enter picks the focused day.
-    const monday = screen.getByRole("button", { name: /November 23/ });
+    const monday = screen.getByRole("button", { name: /^23 November 2026/ });
     monday.focus();
     await user.keyboard("{ArrowRight}{Enter}");
     expect(onChange).toHaveBeenCalledWith(new Date(2026, 10, 24));
+  });
+
+  it("day buttons are named starting with their visible number", () => {
+    render(<Calendar mode="single" defaultMonth={nov18} selected={new Date(2026, 10, 20)} />);
+    expect(screen.getByRole("button", { name: /^20 November 2026, Friday, selected$/ })).toHaveTextContent("20");
   });
 
   it("Calendar renders standalone, Monday first", () => {

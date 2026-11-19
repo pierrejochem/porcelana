@@ -12,14 +12,28 @@ function Chevron({ orientation }: { orientation?: "left" | "right" | "up" | "dow
   return orientation === "left" ? <ChevronLeftIcon size={18} strokeWidth={2.6} /> : <ChevronRightIcon size={18} strokeWidth={2.6} />;
 }
 
+/**
+ * Day button names start with the visible number ("26 October 2026, Monday"), so voice-control
+ * users can say what they see (WCAG 2.5.3, label in name).
+ */
+function labelDayButton(date: Date, modifiers: { today?: boolean; selected?: boolean; disabled?: boolean }) {
+  const rest = new Intl.DateTimeFormat(undefined, { month: "long", year: "numeric" }).format(date);
+  const weekday = new Intl.DateTimeFormat(undefined, { weekday: "long" }).format(date);
+  let label = `${date.getDate()} ${rest}, ${weekday}`;
+  if (modifiers.today) label += ", today";
+  if (modifiers.selected) label += ", selected";
+  return label;
+}
+
 /** Month grid with 44px day cells, keyboard navigation and today marker. Monday-first by default. */
-export function Calendar({ className, components, weekStartsOn = 1, showOutsideDays = true, ...props }: CalendarProps) {
+export function Calendar({ className, components, labels, weekStartsOn = 1, showOutsideDays = true, ...props }: CalendarProps) {
   return (
     <DayPicker
       weekStartsOn={weekStartsOn}
       showOutsideDays={showOutsideDays}
       className={cn("pl-calendar", className)}
       components={{ Chevron, ...components }}
+      labels={{ labelDayButton, ...labels }}
       {...(props as object)}
     />
   );
@@ -35,8 +49,9 @@ export interface DatePickerProps
   locale?: string;
   /** Days that cannot be picked (react-day-picker matchers). */
   disabledDays?: Matcher | Matcher[];
-  /** Earliest / latest navigable months. */
+  /** Earliest navigable month. */
   startMonth?: Date;
+  /** Latest navigable month. */
   endMonth?: Date;
   open?: boolean;
   onOpenChange?: (open: boolean) => void;

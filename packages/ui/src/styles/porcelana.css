@@ -830,6 +830,7 @@
   color: var(--pl-text);
   font-weight: 600;
 }
+.pl-breadcrumb-text { display: inline-flex; align-items: center; min-height: var(--pl-target); padding: 0 12px; color: var(--pl-text-muted); }
 .pl-breadcrumb-separator { color: var(--pl-text-subtle); display: inline-flex; }
 
 .pl-pagination { display: flex; align-items: center; gap: var(--pl-space-2); flex-wrap: wrap; }

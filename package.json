@@ -41,6 +41,7 @@
     "jsdom": "^26.1.0",
     "publint": "^0.3.12",
     "react": "^19.2.0",
+    "react-docgen-typescript": "^2.4.0",
     "react-dom": "^19.2.0",
     "tsup": "^8.5.0",
     "typescript": "^5.9.3",

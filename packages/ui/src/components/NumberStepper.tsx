@@ -16,7 +16,9 @@ export interface NumberStepperProps {
   /** Visible unit after the number, e.g. "min". Also spoken via aria-valuetext. */
   suffix?: string;
   disabled?: boolean;
+  /** Class on the outer group. */
   className?: string;
+  /** Id of the input. Generated when omitted. */
   id?: string;
 }
 

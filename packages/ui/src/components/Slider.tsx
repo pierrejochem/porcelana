@@ -10,6 +10,7 @@ type RootProps = ComponentPropsWithoutRef<typeof SliderPrimitive.Root>;
 export interface SliderProps extends Omit<RootProps, "value" | "defaultValue" | "onValueChange"> {
   /** Accessible name. Shown above the slider unless `hideLabel` is set. */
   label: string;
+  /** Keep the label for screen readers but hide it visually. */
   hideLabel?: boolean;
   value?: number[];
   defaultValue?: number[];
@@ -20,6 +21,7 @@ export interface SliderProps extends Omit<RootProps, "value" | "defaultValue" | 
   showValue?: boolean;
   /** Adds − / + buttons (single-thumb sliders). They step by `stepperStep`. */
   showSteppers?: boolean;
+  /** How far one − / + press moves. Defaults to step. */
   stepperStep?: number;
   /** Labels for each thumb in a range slider, e.g. ["Minimum", "Maximum"]. */
   thumbLabels?: string[];

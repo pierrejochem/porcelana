@@ -32,6 +32,7 @@ import {
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectSeparator, SelectTrigger, SelectValue } from "./Select";
 import { Toaster, clearToasts, dismissToast, toast } from "./Toast";
 import { Button } from "./Button";
+import { Field } from "./Field";
 
 afterEach(() => resetViewport());
 
@@ -247,6 +248,28 @@ describe("Select", () => {
     await user.click(screen.getByRole("option", { name: "Birdsong" }));
     expect(onChange).toHaveBeenCalledWith("birds");
     expect(trigger).toHaveTextContent("Birdsong");
+  });
+});
+
+describe("Select inside Field", () => {
+  it("labels and describes the trigger button", async () => {
+    const { container } = render(
+      <Field label="Sound" description="Plays at 06:00" error="Pick a sound" required>
+        <Select>
+          <SelectTrigger>
+            <SelectValue placeholder="Choose" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="chime">Chime</SelectItem>
+          </SelectContent>
+        </Select>
+      </Field>
+    );
+    const trigger = screen.getByRole("combobox", { name: /Sound/ });
+    expect(trigger).toHaveAccessibleDescription("Plays at 06:00 Pick a sound");
+    expect(trigger).toHaveAttribute("aria-invalid", "true");
+    expect(trigger).toHaveAttribute("aria-required", "true");
+    await expectAccessible(container);
   });
 });
 

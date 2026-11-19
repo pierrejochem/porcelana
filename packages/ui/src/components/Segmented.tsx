@@ -37,6 +37,7 @@ export const Tabs = forwardRef<ElementRef<typeof TabsPrimitive.Root>, ComponentP
 );
 
 export interface TabsListProps extends ComponentPropsWithoutRef<typeof TabsPrimitive.List> {
+  /** Stretch tabs to share the full width. */
   block?: boolean;
 }
 export const TabsList = forwardRef<ElementRef<typeof TabsPrimitive.List>, TabsListProps>(function TabsList(
@@ -64,6 +65,7 @@ export const TabsContent = forwardRef<
 export interface ProgressProps extends ComponentPropsWithoutRef<typeof ProgressPrimitive.Root> {
   /** Accessible name, e.g. "Upload progress". */
   label: string;
+  /** Bar color. */
   tone?: "primary" | "success" | "warning" | "danger";
 }
 

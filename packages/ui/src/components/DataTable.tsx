@@ -22,23 +22,33 @@ import { Pagination } from "./Navigation";
 export type { ColumnDef, Row, SortingState, RowSelectionState } from "@tanstack/react-table";
 
 export interface DataTableProps<TData> {
+  /** Rows to display. */
   data: TData[];
+  /** TanStack Table column definitions. A string header becomes the sort label. */
   columns: ColumnDef<TData, unknown>[];
   /** Describes the table for screen readers. Visible unless `hideCaption`. */
   caption: string;
+  /** Keep the caption for screen readers but hide it visually. */
   hideCaption?: boolean;
+  /** Stable id per row; keys selection state. Defaults to the row index. */
   getRowId?: (row: TData, index: number) => string;
   /** Name of a row, used in "Select <name>" labels and mobile card titles. */
   getRowLabel?: (row: TData) => string;
   /** Adds a checkbox column (and tap-to-select cards on mobile). */
   selectable?: boolean;
+  /** Controlled selection map. */
   rowSelection?: RowSelectionState;
+  /** Called with the selection map ({ [rowId]: true }). */
   onRowSelectionChange?: (selection: RowSelectionState) => void;
   /** Shows a search field filtering every column. */
   searchable?: boolean;
+  /** Accessible name and placeholder of the search field. */
   searchLabel?: string;
+  /** Rows per page. */
   pageSize?: number;
+  /** Sorting on first render, e.g. [{ id: "name", desc: false }]. */
   initialSorting?: SortingState;
+  /** Shown when no rows match. */
   emptyText?: ReactNode;
   /** Content for the toolbar, e.g. bulk actions. Receives the table instance. */
   toolbar?: (table: Table<TData>) => ReactNode;
@@ -46,6 +56,7 @@ export interface DataTableProps<TData> {
   renderCard?: (row: Row<TData>) => ReactNode;
   /** Force a layout instead of following the 640px breakpoint. */
   layout?: "auto" | "table" | "cards";
+  /** Class on the outer wrapper. */
   className?: string;
 }
 

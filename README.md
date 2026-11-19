@@ -11,7 +11,7 @@
 [![npm @porcelana/icons](https://img.shields.io/npm/v/@porcelana/icons?label=%40porcelana%2Ficons&color=2b4fc0)](https://www.npmjs.com/package/@porcelana/icons)
 [![License: MIT](https://img.shields.io/badge/license-MIT-18214a)](LICENSE)
 
-[**Live gallery**](https://pierrejochem.github.io/porcelana/) · [Components](#components) · [Accessibility](#accessibility) · [Releasing](#releasing)
+[**Docs & live gallery**](https://pierrejochem.github.io/porcelana/) · [Getting started](https://pierrejochem.github.io/porcelana/guides/getting-started/) · [Components](#components) · [Accessibility](#accessibility) · [Releasing](#releasing)
 
 </div>
 
@@ -59,6 +59,8 @@ Works with React 18 and 19, Next.js (ships `"use client"`), Vite and Remix. No T
 | Data & display | **Data Table** (sort, search, select, paginate), Card, Badge, Avatar, Progress, Skeleton, Accordion |
 | Theming | ThemeProvider, `useTheme`, `useIsMobile`, CSS variables |
 
+Every component has a docs page with a live example, its props (generated from the types), and accessibility and mobile notes, for example [Slider](https://pierrejochem.github.io/porcelana/components/slider/) and [DataTable](https://pierrejochem.github.io/porcelana/components/data-table/).
+
 ## Mobile-first
 
 - Every interactive element is at least **44 × 44 px**.
@@ -76,7 +78,7 @@ Works with React 18 and 19, Next.js (ships `"use client"`), Vite and Remix. No T
 
 ```bash
 pnpm install
-pnpm preview        # gallery at http://localhost:5173
+pnpm preview        # docs site at http://localhost:5173 (props generated from the TypeScript types)
 pnpm test           # Vitest + Testing Library + jest-axe
 pnpm verify         # lint, build, typecheck, tests with coverage, package checks
 ```

@@ -35,8 +35,11 @@ export const DropdownMenuContent = forwardRef<ElementRef<typeof MenuPrimitive.Co
 );
 
 export interface DropdownMenuItemProps extends ComponentPropsWithoutRef<typeof MenuPrimitive.Item> {
+  /** Style as a destructive action. */
   danger?: boolean;
+  /** Leading icon (decorative). */
   icon?: ReactNode;
+  /** Keyboard hint shown on the right. Visual only. */
   shortcut?: string;
 }
 

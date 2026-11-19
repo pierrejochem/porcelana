@@ -65,6 +65,7 @@ export const AlertDialog = AlertPrimitive.Root;
 export const AlertDialogTrigger = AlertPrimitive.Trigger;
 
 export interface AlertDialogContentProps extends ComponentPropsWithoutRef<typeof AlertPrimitive.Content> {
+  /** Keep the centered modal on phones instead of the bottom sheet. */
   centered?: boolean;
 }
 

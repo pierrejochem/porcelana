@@ -4,7 +4,7 @@
 
 Accessible, mobile-ready **React component library** on [Radix UI](https://www.radix-ui.com/) primitives. TypeScript, light and night themes, and plain CSS (no Tailwind required).
 
-**[Live gallery](https://pierrejochem.github.io/porcelana/)** · [GitHub](https://github.com/pierrejochem/porcelana) · [Icons](https://www.npmjs.com/package/@porcelana/icons)
+**[Docs & live gallery](https://pierrejochem.github.io/porcelana/)** · [GitHub](https://github.com/pierrejochem/porcelana) · [Icons](https://www.npmjs.com/package/@porcelana/icons)
 
 ```bash
 pnpm add @porcelana/ui @porcelana/icons

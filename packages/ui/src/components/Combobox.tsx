@@ -17,14 +17,17 @@ export interface ComboboxOption {
 
 export interface ComboboxProps
   extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "value" | "defaultValue" | "onChange"> {
+  /** Options to choose from; disabled ones are skipped. */
   options: ComboboxOption[];
   value?: string | null;
   defaultValue?: string | null;
   onValueChange?: (value: string | null) => void;
   placeholder?: string;
+  /** Placeholder of the search field. */
   searchPlaceholder?: string;
   /** Accessible name of the search field inside the popup. */
   searchLabel?: string;
+  /** Shown when nothing matches the search. */
   emptyText?: string;
   /** Selecting the active option again clears it. Default true. */
   allowDeselect?: boolean;

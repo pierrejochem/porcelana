@@ -61,7 +61,9 @@ export interface ToasterProps {
   label?: string;
   /** Keyboard shortcut that moves focus to the toasts. Default F8. */
   hotkey?: string[];
+  /** Direction a toast can be swiped to dismiss it. */
   swipeDirection?: "right" | "left" | "up" | "down";
+  /** Accessible name of each toast's close button. */
   closeLabel?: string;
 }
 

@@ -38,7 +38,9 @@ export function useField() {
 }
 
 export interface FieldProps extends Omit<HTMLAttributes<HTMLDivElement>, "children"> {
+  /** Visible label, linked to the control. */
   label: ReactNode;
+  /** Help text under the control; added to aria-describedby. */
   description?: ReactNode;
   /** Error message. Sets aria-invalid on the control and is announced. */
   error?: ReactNode;
@@ -101,6 +103,7 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(function Field(
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   /** Leading icon, e.g. a search glyph. Decorative. */
   icon?: ReactNode;
+  /** Error styling and aria-invalid. Field sets this for you when it has an error. */
   invalid?: boolean;
 }
 
@@ -123,6 +126,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input({ c
 });
 
 export interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
+  /** Error styling and aria-invalid. Field sets this for you when it has an error. */
   invalid?: boolean;
 }
 
