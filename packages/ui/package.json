@@ -1,6 +1,6 @@
 {
   "name": "@porcelana/ui",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Accessible, mobile-ready React component library on Radix UI primitives: 35+ TypeScript components with light/night themes, data table, date picker, combobox, dialogs and bottom sheets.",
   "keywords": [
     "react",
