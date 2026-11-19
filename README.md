@@ -1,21 +1,84 @@
+<div align="center">
+
+<img src="docs/social-preview.png" alt="Porcelana: accessible, mobile-ready React components on Radix UI" width="100%" />
+
 # Porcelana
 
-Tactile React components on Radix primitives: porcelain surfaces, cobalt accents, a night theme, and every control built for touch and screen readers.
+**Accessible, mobile-ready React components on Radix UI primitives, in TypeScript, with light and night themes.**
 
-| Package | |
+[![CI](https://github.com/pierrejochem/porcelana/actions/workflows/ci.yml/badge.svg)](https://github.com/pierrejochem/porcelana/actions/workflows/ci.yml)
+[![npm @porcelana/ui](https://img.shields.io/npm/v/@porcelana/ui?label=%40porcelana%2Fui&color=2b4fc0)](https://www.npmjs.com/package/@porcelana/ui)
+[![npm @porcelana/icons](https://img.shields.io/npm/v/@porcelana/icons?label=%40porcelana%2Ficons&color=2b4fc0)](https://www.npmjs.com/package/@porcelana/icons)
+[![License: MIT](https://img.shields.io/badge/license-MIT-18214a)](LICENSE)
+
+[**Live gallery**](https://pierrejochem.github.io/porcelana/) · [Components](#components) · [Accessibility](#accessibility) · [Releasing](#releasing)
+
+</div>
+
+Porcelana is an open-source **React component library** and **design system**: 35+ tactile components on porcelain-white raised and recessed surfaces with cobalt accents. Every control is sized for touch, works with a keyboard and screen reader, and switches to bottom sheets and card lists on phones.
+
+| Package | What it is |
 | --- | --- |
-| [`@porcelana/ui`](packages/ui) | ~35 components, tokens and styles |
-| [`@porcelana/icons`](packages/icons) | 51 tree-shakable stroke icons |
+| [`@porcelana/ui`](packages/ui) | Components, CSS tokens (`--pl-*`), light and night themes |
+| [`@porcelana/icons`](packages/icons) | 51 tree-shakable stroke icons on a 24px grid |
 
-**Live gallery:** https://pierrejochem.github.io/porcelana/ (deployed from `main`)
+![Porcelana component gallery in the light theme](docs/gallery.png)
+
+## Quick start
+
+```bash
+npm install @porcelana/ui @porcelana/icons
+```
+
+```tsx
+import "@porcelana/ui/styles.css";
+import { ThemeProvider, Switch, Slider, Button, Toaster, toast } from "@porcelana/ui";
+
+export function Settings() {
+  return (
+    <ThemeProvider theme="system">
+      <Switch label="Alarm" description="Weekdays at 06:00" defaultChecked />
+      <Slider label="Volume" defaultValue={[62]} showValue showSteppers formatValue={(v) => `${v}%`} />
+      <Button onClick={() => toast({ title: "Saved" })}>Save</Button>
+      <Toaster />
+    </ThemeProvider>
+  );
+}
+```
+
+Works with React 18 and 19, Next.js (ships `"use client"`), Vite and Remix. No Tailwind needed.
+
+## Components
+
+| Group | Components |
+| --- | --- |
+| Actions | Button, IconButton |
+| Inputs | Field, Input, Textarea, Checkbox, Radio Group, Switch, Slider, Number Stepper, Select, Combobox, Date Picker, Calendar, Toggle Group |
+| Navigation | Tabs, Breadcrumb, Pagination |
+| Overlays | Dialog, Alert Dialog, Popover, Dropdown Menu, Tooltip, InfoTip, Toast |
+| Data & display | **Data Table** (sort, search, select, paginate), Card, Badge, Avatar, Progress, Skeleton, Accordion |
+| Theming | ThemeProvider, `useTheme`, `useIsMobile`, CSS variables |
+
+## Mobile-first
+
+- Every interactive element is at least **44 × 44 px**.
+- Under **640 px** wide, dialogs become **bottom sheets**, menus become **action sheets** and the data table becomes **tap-to-select cards**.
+- Inputs use a 16 px font so iOS doesn't zoom in on focus. Sliders let vertical swipes scroll the page, and sheets and toasts respect safe areas.
+
+## Accessibility
+
+- WAI-ARIA patterns from Radix: focus trapping, roving focus and typeahead.
+- Every component is tested with **jest-axe**, plus keyboard and screen-reader-name tests.
+- Text meets **WCAG AA** contrast in both themes, and focus rings meet 3:1.
+- Supports `prefers-reduced-motion` and Windows high contrast (`forced-colors`).
 
 ## Develop
 
 ```bash
 pnpm install
 pnpm preview        # gallery at http://localhost:5173
-pnpm test           # vitest + Testing Library + jest-axe
-pnpm verify         # lint, typecheck, tests with coverage, build, package checks
+pnpm test           # Vitest + Testing Library + jest-axe
+pnpm verify         # lint, build, typecheck, tests with coverage, package checks
 ```
 
 Requires Node ≥ 20 and pnpm 10 (`corepack enable`).
@@ -24,31 +87,13 @@ Requires Node ≥ 20 and pnpm 10 (`corepack enable`).
 
 Releases are automated with [Changesets](https://github.com/changesets/changesets):
 
-1. In your PR, run `pnpm changeset`, pick patch, minor or major and describe the change. CI fails without one if a package changed.
-2. Each PR gets **preview builds** from [pkg.pr.new](https://pkg.pr.new), and a bot comments the install command.
-3. When the PR is merged to `main`, the Release workflow opens a **"Version Packages"** PR that bumps versions and writes the changelogs.
-4. When that PR is merged, the workflow runs `pnpm verify` and **publishes to npm with provenance**. It also creates GitHub releases.
+1. In your PR, run `pnpm changeset` and describe the change. CI fails without one if a package changed.
+2. Each PR gets **preview builds** from [pkg.pr.new](https://pkg.pr.new).
+3. When the PR is merged to `main`, the Release workflow opens a **"Version Packages"** PR.
+4. When that PR is merged, the workflow **publishes to npm with provenance** and creates GitHub releases. The [gallery](https://pierrejochem.github.io/porcelana/) redeploys on every push to `main`.
 
-### One-time setup
-
-1. **npm:** create the `porcelana` organisation on npmjs.com, then create a granular access token with publish rights on `@porcelana/*`.
-2. **GitHub → Settings → Secrets → Actions:** add the token as `NPM_TOKEN`.
-3. **GitHub → Settings → Actions → General:** allow GitHub Actions to create and approve pull requests.
-4. Install the [pkg.pr.new GitHub App](https://github.com/apps/pkg-pr-new) on this repo for PR preview packages.
-5. **GitHub → Settings → Pages:** set the source to "GitHub Actions" for the gallery.
-
-After the first publish you can switch to npm **trusted publishing** (OIDC) and delete the token.
-
-## Structure
-
-```
-packages/
-  icons/   createIcon + generated icons (scripts/gen_icons.py)
-  ui/      src/components, src/styles/porcelana.css, preview/ (gallery)
-.changeset/  pending release notes
-.github/     CI, release, gallery deploy, dependabot
-```
+**One-time setup:** create the `porcelana` organisation on npmjs.com, then add a publish token as the `NPM_TOKEN` Actions secret. After the first publish you can switch to npm trusted publishing (OIDC).
 
 ## License
 
-MIT © Pierre Jochem
+MIT © [Pierre Jochem](https://github.com/pierrejochem)

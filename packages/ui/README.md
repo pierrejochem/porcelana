@@ -1,6 +1,10 @@
 # @porcelana/ui
 
-Tactile, mobile-ready, accessible React components on [Radix](https://www.radix-ui.com/) primitives. TypeScript only, light and night themes, plain CSS (no Tailwind required).
+![Porcelana: accessible, mobile-ready React components on Radix UI](https://raw.githubusercontent.com/pierrejochem/porcelana/main/docs/social-preview.png)
+
+Accessible, mobile-ready **React component library** on [Radix UI](https://www.radix-ui.com/) primitives. TypeScript, light and night themes, and plain CSS (no Tailwind required).
+
+**[Live gallery](https://pierrejochem.github.io/porcelana/)** · [GitHub](https://github.com/pierrejochem/porcelana) · [Icons](https://www.npmjs.com/package/@porcelana/icons)
 
 ```bash
 pnpm add @porcelana/ui @porcelana/icons

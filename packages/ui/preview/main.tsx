@@ -106,7 +106,13 @@ function App() {
         <header style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 16, flexWrap: "wrap" }}>
           <div>
             <Breadcrumb items={[{ label: "Home", href: "#" }, { label: "Alarms", href: "#" }, { label: "Preview" }]} />
-            <h1 style={{ margin: "8px 0 0", fontSize: "clamp(28px, 5vw, 44px)" }}>Porcelana preview</h1>
+            <h1 style={{ margin: "8px 0 0", fontSize: "clamp(28px, 5vw, 44px)" }}>Porcelana UI</h1>
+            <p style={{ margin: "6px 0 0", maxWidth: 640, color: "var(--pl-text-muted)", lineHeight: 1.5 }}>
+              Accessible, mobile-ready React components on Radix UI primitives. Try every control below, with touch,
+              keyboard or a screen reader. <a href="https://github.com/pierrejochem/porcelana" style={{ color: "var(--pl-primary-text)" }}>GitHub</a>
+              {" · "}
+              <a href="https://www.npmjs.com/package/@porcelana/ui" style={{ color: "var(--pl-primary-text)" }}>npm</a>
+            </p>
           </div>
           <Switch
             label={night ? "Night" : "Light"}

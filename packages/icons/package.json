@@ -1,21 +1,36 @@
 {
   "name": "@porcelana/icons",
   "version": "0.0.0",
-  "description": "48 round-cap stroke icons on a 24px grid, as tree-shakable React components.",
+  "description": "51 tree-shakable stroke icons for React on a 24px grid, accessible by default (decorative or labelled), from the Porcelana design system.",
+  "keywords": [
+    "react",
+    "icons",
+    "react-icons",
+    "svg-icons",
+    "icon-set",
+    "stroke-icons",
+    "tree-shakable",
+    "accessible",
+    "typescript",
+    "design-system",
+    "porcelana"
+  ],
+  "author": {
+    "name": "Pierre Jochem",
+    "url": "https://github.com/pierrejochem"
+  },
   "license": "MIT",
-  "type": "module",
-  "sideEffects": false,
+  "homepage": "https://pierrejochem.github.io/porcelana/",
+  "bugs": {
+    "url": "https://github.com/pierrejochem/porcelana/issues"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pierrejochem/porcelana.git",
     "directory": "packages/icons"
   },
-  "keywords": [
-    "react",
-    "icons",
-    "svg",
-    "porcelana"
-  ],
+  "type": "module",
+  "sideEffects": false,
   "files": [
     "dist"
   ],

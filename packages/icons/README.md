@@ -1,6 +1,6 @@
 # @porcelana/icons
 
-51 round-cap stroke icons on a 24px grid, shipped as tree-shakable React components.
+51 round-cap stroke icons on a 24px grid, shipped as tree-shakable, accessible React components. Part of the [Porcelana](https://github.com/pierrejochem/porcelana) design system ([live gallery](https://pierrejochem.github.io/porcelana/)).
 
 ```bash
 pnpm add @porcelana/icons

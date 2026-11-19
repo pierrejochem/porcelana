@@ -3,16 +3,112 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <title>Porcelana preview</title>
+    <title>Porcelana: accessible, mobile-ready React components on Radix UI</title>
+    <meta name="description" content="Open-source React component library on Radix UI: 35+ accessible, touch-friendly TypeScript components with light and night themes, data table and 51 icons." />
+    <meta name="keywords" content="react component library, radix ui, accessible react components, typescript ui kit, mobile-first components, design system, data table, date picker, combobox, react icons" />
+    <meta name="author" content="Pierre Jochem" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="canonical" href="https://pierrejochem.github.io/porcelana/" />
+    <meta name="theme-color" content="#2b4fc0" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0e1638" media="(prefers-color-scheme: dark)" />
+    <meta name="color-scheme" content="light dark" />
+
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+    <link rel="sitemap" type="application/xml" href="./sitemap.xml" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Porcelana" />
+    <meta property="og:title" content="Porcelana: accessible, mobile-ready React components on Radix UI" />
+    <meta property="og:description" content="35+ tactile TypeScript components with light and night themes, 44px touch targets, bottom sheets on phones and jest-axe tested accessibility." />
+    <meta property="og:url" content="https://pierrejochem.github.io/porcelana/" />
+    <meta property="og:image" content="https://pierrejochem.github.io/porcelana/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Porcelana UI: raised switches, sliders and cards in porcelain white and cobalt blue" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Porcelana: accessible React components on Radix UI" />
+    <meta name="twitter:description" content="Tactile, mobile-ready, accessible TypeScript components with light and night themes." />
+    <meta name="twitter:image" content="https://pierrejochem.github.io/porcelana/og-image.png" />
+    <meta name="twitter:image:alt" content="Porcelana UI: raised switches, sliders and cards in porcelain white and cobalt blue" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://pierrejochem.github.io/porcelana/#website",
+            "url": "https://pierrejochem.github.io/porcelana/",
+            "name": "Porcelana",
+            "description": "Accessible, mobile-ready React components on Radix UI primitives.",
+            "inLanguage": "en"
+          },
+          {
+            "@type": "SoftwareSourceCode",
+            "name": "Porcelana UI",
+            "description": "Open-source React component library built on Radix UI primitives, written in TypeScript, with light and night themes, touch-sized controls and tested accessibility.",
+            "codeRepository": "https://github.com/pierrejochem/porcelana",
+            "programmingLanguage": ["TypeScript", "CSS"],
+            "runtimePlatform": "React",
+            "license": "https://opensource.org/licenses/MIT",
+            "author": { "@type": "Person", "name": "Pierre Jochem", "url": "https://github.com/pierrejochem" },
+            "keywords": "react, radix ui, component library, accessibility, design system, typescript"
+          }
+        ]
+      }
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Barlow+Condensed:wght@500;600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="./app.css" />
     <style>
-      body { margin: 0; }
+      body { margin: 0; background: #e9ecf2; color: #18214a; font-family: Outfit, system-ui, sans-serif; }
+      .seo { max-width: 860px; margin: 0 auto; padding: 48px 24px; line-height: 1.6; }
+      .seo h1 { font-size: clamp(28px, 5vw, 44px); line-height: 1.1; margin: 0 0 16px; }
+      .seo code { background: #dde1ea; padding: 2px 6px; border-radius: 6px; }
+      .seo a { color: #2b4fc0; }
     </style>
   </head>
   <body>
-    <div id="root"></div>
+    <!-- Static content for crawlers and no-JS visitors; React replaces it on load. -->
+    <div id="root">
+      <main class="seo">
+        <h1>Porcelana: accessible, mobile-ready React components on Radix UI</h1>
+        <p>
+          Porcelana is an open-source <strong>React component library</strong> built on <strong>Radix UI primitives</strong> and written in
+          <strong>TypeScript</strong>. Components sit on porcelain-white, raised or recessed surfaces with cobalt-blue accents, and come in
+          light and night themes.
+        </p>
+        <h2>Install</h2>
+        <p><code>npm install @porcelana/ui @porcelana/icons</code>, then <code>import "@porcelana/ui/styles.css"</code>.</p>
+        <h2>Components</h2>
+        <ul>
+          <li><strong>Inputs:</strong> Button, Input, Textarea, Checkbox, Radio Group, Switch, Slider, Number Stepper, Select, Combobox, Date Picker, Calendar, Toggle Group</li>
+          <li><strong>Overlays:</strong> Dialog, Alert Dialog, Popover, Dropdown Menu, Tooltip, InfoTip, Toast</li>
+          <li><strong>Data and display:</strong> Data Table with sorting, search, selection and pagination; Card, Badge, Avatar, Progress, Skeleton, Accordion, Tabs, Breadcrumb, Pagination</li>
+          <li><strong>Icons:</strong> 51 tree-shakable stroke icons in <code>@porcelana/icons</code></li>
+        </ul>
+        <h2>Built for touch and assistive technology</h2>
+        <ul>
+          <li>Every control has a touch target of at least 44 × 44 px</li>
+          <li>Under 640 px wide, dialogs and menus become bottom sheets and tables become card lists</li>
+          <li>Keyboard support and ARIA from Radix, with every component tested by jest-axe</li>
+          <li>Supports reduced motion and Windows high-contrast mode, and text meets WCAG AA contrast in both themes</li>
+        </ul>
+        <p>
+          <a href="https://github.com/pierrejochem/porcelana">Source on GitHub</a> ·
+          <a href="https://www.npmjs.com/package/@porcelana/ui">@porcelana/ui on npm</a> ·
+          <a href="https://www.npmjs.com/package/@porcelana/icons">@porcelana/icons on npm</a>
+        </p>
+        <noscript><p>Enable JavaScript to try the live component gallery.</p></noscript>
+      </main>
+    </div>
     <script type="module" src="./app.js"></script>
   </body>
 </html>
