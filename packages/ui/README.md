@@ -57,6 +57,12 @@ Optional fonts: the design uses **Outfit** and **Barlow Condensed** (numerals); 
 
 ## Theming
 
+Two surfaces: the default **porcelain** look (soft, pressed shadows on a light grey page) and **white** for apps on pure white pages:
+
+```tsx
+<ThemeProvider theme="system" surface="white">…</ThemeProvider>
+```
+
 All colours, shadows, radii and spacing are CSS variables (`--pl-*`). Override them on `:root` or `[data-theme="night"]`:
 
 ```css

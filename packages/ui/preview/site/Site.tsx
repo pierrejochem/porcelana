@@ -7,7 +7,10 @@ import {
   IconButton,
   Switch,
   ThemeProvider,
-  Toaster
+  Toaster,
+  ToggleGroup,
+  ToggleGroupItem,
+  type SurfaceName
 } from "@porcelana/ui";
 import { MenuIcon } from "@porcelana/icons";
 import { docs, findDoc, groups } from "../docs/registry";
@@ -70,26 +73,53 @@ function Nav({ path, base, onNavigate }: { path: string; base: string; onNavigat
   );
 }
 
-function readStoredTheme(): boolean {
+function readStored(key: string): string | null {
   try {
-    return localStorage.getItem("pl-theme") === "night";
+    return localStorage.getItem(key);
   } catch {
-    return false;
+    return null;
   }
+}
+
+function store(key: string, value: string) {
+  try {
+    localStorage.setItem(key, value);
+  } catch {
+    /* storage unavailable */
+  }
+}
+
+function SurfaceSwitch({ surface, onChange, className }: { surface: SurfaceName; onChange: (s: SurfaceName) => void; className?: string }) {
+  return (
+    <ToggleGroup
+      type="single"
+      aria-label="Surface"
+      value={surface}
+      onValueChange={(v) => v && onChange(v as SurfaceName)}
+      className={className}
+    >
+      <ToggleGroupItem value="porcelain">Porcelain</ToggleGroupItem>
+      <ToggleGroupItem value="white">White</ToggleGroupItem>
+    </ToggleGroup>
+  );
 }
 
 export function Site({ path, base }: { path: string; base: string }) {
   const [night, setNight] = useState(false);
+  const [surface, setSurface] = useState<SurfaceName>("porcelain");
   const [menuOpen, setMenuOpen] = useState(false);
-  // Read the stored theme after hydration so server and client markup match.
-  useEffect(() => setNight(readStoredTheme()), []);
+  // Read stored choices after hydration so server and client markup match.
+  useEffect(() => {
+    setNight(readStored("pl-theme") === "night");
+    setSurface(readStored("pl-surface") === "white" ? "white" : "porcelain");
+  }, []);
   const toggleTheme = (v: boolean) => {
     setNight(v);
-    try {
-      localStorage.setItem("pl-theme", v ? "night" : "light");
-    } catch {
-      /* storage unavailable */
-    }
+    store("pl-theme", v ? "night" : "light");
+  };
+  const changeSurface = (v: SurfaceName) => {
+    setSurface(v);
+    store("pl-surface", v);
   };
 
   let content: ReactNode;
@@ -103,7 +133,7 @@ export function Site({ path, base }: { path: string; base: string }) {
   }
 
   return (
-    <ThemeProvider theme={night ? "night" : "light"} className="docs-shell">
+    <ThemeProvider theme={night ? "night" : "light"} surface={surface} className="docs-shell">
       <a href="#content" className="docs-skip">
         Skip to content
       </a>
@@ -116,6 +146,7 @@ export function Site({ path, base }: { path: string; base: string }) {
           </DialogTrigger>
           <DialogContent className="docs-menu-sheet" aria-describedby={undefined}>
             <DialogTitle>Porcelana</DialogTitle>
+            <SurfaceSwitch surface={surface} onChange={changeSurface} className="pl-toggle-group--block" />
             <Nav path={path} base={base} onNavigate={() => setMenuOpen(false)} />
           </DialogContent>
         </Dialog>
@@ -133,6 +164,7 @@ export function Site({ path, base }: { path: string; base: string }) {
           <a className="docs-link docs-hide-sm" href="https://www.npmjs.com/package/@porcelana/ui" rel="noopener">
             npm
           </a>
+          <SurfaceSwitch surface={surface} onChange={changeSurface} className="docs-hide-sm" />
           <Switch aria-label="Night theme" checked={night} onCheckedChange={toggleTheme} />
         </div>
       </header>

@@ -3,7 +3,7 @@ export { cn } from "./lib/cn";
 export { useMediaQuery, useIsMobile, MOBILE_QUERY } from "./lib/useMediaQuery";
 export { useControllableState } from "./lib/useControllableState";
 
-export { ThemeProvider, useTheme, type ThemeName, type ThemeProviderProps } from "./components/Theme";
+export { ThemeProvider, useTheme, useSurface, type ThemeName, type SurfaceName, type ThemeProviderProps } from "./components/Theme";
 
 export { Button, buttonVariants, type ButtonProps } from "./components/Button";
 export { IconButton, iconButtonVariants, type IconButtonProps } from "./components/IconButton";

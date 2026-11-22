@@ -99,7 +99,7 @@ export function Gallery({ base }: { base: string }) {
           <h1 style={{ margin: 0, fontSize: "clamp(28px, 5vw, 44px)" }}>Porcelana UI</h1>
           <p style={{ margin: 0, maxWidth: 680, color: "var(--pl-text-muted)", lineHeight: 1.5, fontSize: 17 }}>
             Accessible, mobile-ready React components on Radix UI primitives. Try every control below, with touch,
-            keyboard or a screen reader. Each one has its own{" "}
+            keyboard or a screen reader. Switch between the porcelain and white surfaces at the top. Each one has its own{" "}
             <a href={`${base}components/button/`} style={{ color: "var(--pl-primary-text)" }}>docs page</a> with props and examples.
           </p>
         </header>

@@ -70,6 +70,28 @@
   --pl-duration: 200ms;
 }
 
+/* White surface: for apps on pure white pages. Neumorphic highlights vanish on white,
+   so raised elements get a hairline plus a soft drop shadow, and recessed ones a light grey well.
+   Applies to the light theme; night always wins (it is declared after this block). */
+[data-surface="white"] {
+  --pl-bg: #ffffff;
+  --pl-surface: #ffffff;
+  --pl-elevated: #ffffff;
+  --pl-well: #f2f4f8;
+  --pl-muted-fill: #e4e7ee;
+  --pl-border: #e6e9f0;
+  --pl-primary-soft: #eef2fd;
+  --pl-focus-gap: #ffffff;
+
+  --pl-shadow-raised: 0 0 0 1px #e4e7ef, 0 1px 2px rgba(24, 33, 74, 0.06), 0 6px 16px rgba(24, 33, 74, 0.1);
+  --pl-shadow-raised-sm: 0 0 0 1px #e4e7ef, 0 1px 2px rgba(24, 33, 74, 0.06), 0 3px 8px rgba(24, 33, 74, 0.1);
+  --pl-shadow-inset: inset 0 0 0 1px #e3e7ee, inset 0 1px 3px rgba(24, 33, 74, 0.12);
+  --pl-shadow-overlay: 0 0 0 1px #e6e9f0, 0 12px 32px rgba(24, 33, 74, 0.14);
+  --pl-shadow-thumb: 0 0 0 1px #e4e7ef, 0 1px 2px rgba(24, 33, 74, 0.12), 0 4px 10px rgba(24, 33, 74, 0.18);
+}
+/* The off-state switch track needs a visible edge on white. */
+[data-surface="white"] .pl-switch:not([data-state="checked"]) { box-shadow: inset 0 0 0 1px #d9dee8, inset 0 1px 3px rgba(24, 33, 74, 0.18); }
+
 [data-theme="night"] {
   color-scheme: dark;
   --pl-bg: #0e1638;
@@ -114,6 +136,8 @@
   --pl-shadow-primary: 0 6px 14px rgba(0, 0, 0, 0.45);
   --pl-shadow-thumb: 2px 4px 10px rgba(0, 0, 0, 0.5);
 }
+
+[data-theme="night"] .pl-switch:not([data-state="checked"]) { box-shadow: inset 3px 3px 7px rgba(20, 30, 80, 0.3), inset -2px -2px 5px rgba(255, 255, 255, 0.6); }
 
 /* ───────────── Base ───────────── */
 .pl-root {

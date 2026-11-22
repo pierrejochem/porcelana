@@ -81,6 +81,7 @@ export function Settings() {
 interface Token {
   name: string;
   light: string;
+  white: string | null;
   night: string | null;
 }
 
@@ -115,6 +116,20 @@ export function Theming() {
   --pl-primary-text: #7fe0bd;
 }`}
       />
+      <h2>White surface</h2>
+      <p>
+        The default <strong>porcelain</strong> look relies on a light grey page for its soft, pressed shadows. On a pure white page those highlights
+        disappear, so use <code>surface="white"</code>: raised elements get a hairline edge and a soft drop shadow, recessed ones become light grey
+        wells. It applies to the light theme; night stays as it is.
+      </p>
+      <CodeBlock
+        label="App.tsx"
+        code={`<ThemeProvider theme="system" surface="white">
+  <App />
+</ThemeProvider>
+
+/* or without React: <html data-surface="white"> */`}
+      />
       <p>
         Keep text tokens at 4.5:1 contrast against their surfaces. Overriding <code>--pl-primary</code> doesn't change{" "}
         <code>--pl-primary-text</code>, so set both.
@@ -132,6 +147,7 @@ export function Theming() {
                   <tr>
                     <th scope="col">Token</th>
                     <th scope="col">Light</th>
+                    <th scope="col">White surface</th>
                     <th scope="col">Night</th>
                   </tr>
                 </thead>
@@ -141,8 +157,8 @@ export function Theming() {
                       <th scope="row" data-label="Token">
                         <code>{t.name}</code>
                       </th>
-                      {[t.light, t.night].map((v, i) => (
-                        <td key={i} data-label={i ? "Night" : "Light"}>
+                      {[t.light, t.white, t.night].map((v, i) => (
+                        <td key={i} data-label={["Light", "White surface", "Night"][i]}>
                           {v ? (
                             <span className="docs-token">
                               {isColor(v) ? <span className="docs-swatch" style={{ background: v }} aria-hidden="true" /> : null}

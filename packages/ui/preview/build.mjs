@@ -31,8 +31,9 @@ function readTokens(cssPath) {
     return vars;
   };
   const light = block('[data-theme="light"]');
-  const night = block('[data-theme="night"]');
-  return Object.entries(light).map(([name, value]) => ({ name, light: value, night: night[name] ?? null }));
+  const white = block('[data-surface="white"] {');
+  const night = block('[data-theme="night"] {');
+  return Object.entries(light).map(([name, value]) => ({ name, light: value, white: white[name] ?? null, night: night[name] ?? null }));
 }
 
 // esbuild plugin: `import code from "./File.tsx?raw"` gives the file's text.

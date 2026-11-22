@@ -6,7 +6,7 @@ import { Combobox } from "./Combobox";
 import { Calendar, DatePicker } from "./DatePicker";
 import { Breadcrumb, Pagination, getPageTokens } from "./Navigation";
 import { DataTable, type ColumnDef } from "./DataTable";
-import { ThemeProvider, useTheme } from "./Theme";
+import { ThemeProvider, useSurface, useTheme } from "./Theme";
 import { Field } from "./Field";
 import { Badge } from "./Display";
 import { useMediaQuery, useIsMobile } from "../lib/useMediaQuery";
@@ -348,6 +348,34 @@ describe("ThemeProvider", () => {
     render(<ThemeProvider theme="night" />).unmount();
     expect(document.documentElement).toHaveAttribute("data-theme", "light");
     document.documentElement.removeAttribute("data-theme");
+  });
+});
+
+describe("ThemeProvider surface", () => {
+  it("sets data-surface on the wrapper and <html>, exposes it via useSurface and restores on unmount", () => {
+    function Probe() {
+      return <span>{useSurface()}</span>;
+    }
+    const { container, unmount } = render(
+      <ThemeProvider surface="white">
+        <Probe />
+      </ThemeProvider>
+    );
+    expect(container.firstChild).toHaveAttribute("data-surface", "white");
+    expect(document.documentElement).toHaveAttribute("data-surface", "white");
+    expect(screen.getByText("white")).toBeInTheDocument();
+    unmount();
+    expect(document.documentElement).not.toHaveAttribute("data-surface");
+  });
+
+  it("defaults to porcelain without a data-surface attribute and keeps an outer value", () => {
+    document.documentElement.setAttribute("data-surface", "white");
+    const { container, unmount } = render(<ThemeProvider />);
+    expect(container.firstChild).not.toHaveAttribute("data-surface");
+    expect(document.documentElement).not.toHaveAttribute("data-surface");
+    unmount();
+    expect(document.documentElement).toHaveAttribute("data-surface", "white");
+    document.documentElement.removeAttribute("data-surface");
   });
 });
 

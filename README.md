@@ -4,7 +4,7 @@
 
 # Porcelana
 
-**Accessible, mobile-ready React components on Radix UI primitives, in TypeScript, with light and night themes.**
+**Accessible, mobile-ready React components on Radix UI primitives, in TypeScript, with light and night themes and a white surface option.**
 
 [![CI](https://github.com/pierrejochem/porcelana/actions/workflows/ci.yml/badge.svg)](https://github.com/pierrejochem/porcelana/actions/workflows/ci.yml)
 [![npm @porcelana/ui](https://img.shields.io/npm/v/@porcelana/ui?label=%40porcelana%2Fui&color=2b4fc0)](https://www.npmjs.com/package/@porcelana/ui)
@@ -47,6 +47,8 @@ export function Settings() {
 ```
 
 Works with React 18 and 19, Next.js (ships `"use client"`), Vite and Remix. No Tailwind needed.
+
+On a pure white page, pass `surface="white"` to `ThemeProvider`. Raised elements then get hairline edges and soft drop shadows instead of the porcelain look's pressed highlights. See [Theming](https://pierrejochem.github.io/porcelana/guides/theming/).
 
 ## Components
 

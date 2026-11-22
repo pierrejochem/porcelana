@@ -426,11 +426,15 @@ export const docs: DocEntry[] = [
     slug: "theme-provider",
     name: "ThemeProvider",
     group: "Theming",
-    summary: "Light, night or system theme for the whole app or one section.",
+    summary: "Light, night or system theme, and a porcelain or white surface, for the whole app or one section.",
     props: ["ThemeProvider"],
     example: ThemeProvider,
     code: ThemeProviderCode,
-    a11y: ["Both themes meet WCAG AA text contrast; focus rings are dark blue in light and yellow in night.", "theme=\"system\" follows the operating system's dark mode."],
+    a11y: [
+      "Both themes and both surfaces meet WCAG AA text contrast; focus rings are dark blue in light and yellow in night.",
+      "theme=\"system\" follows the operating system's dark mode.",
+      "surface=\"white\" adds hairline edges so unchecked boxes, off switches and fields stay visible on white."
+    ],
     mobile: ["Sets data-theme on <html> by default, so portalled sheets and menus pick up the theme too."]
   }
 ];
