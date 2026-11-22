@@ -1,5 +1,11 @@
 # @porcelana/ui
 
+## 0.2.0
+
+### Minor Changes
+
+- [`0c80849`](https://github.com/pierrejochem/porcelana/commit/0c80849b0ed022adf77688d70d9fcec18983f53e) Thanks [@pierrejochem](https://github.com/pierrejochem)! - New white surface for apps on pure white pages: `<ThemeProvider surface="white">` (or `data-surface="white"` on any element). Raised elements get a hairline edge and a soft drop shadow instead of neumorphic highlights, recessed elements become light grey wells, and off switches and unchecked boxes keep a visible edge. Applies to the light theme. Adds the `useSurface()` hook and the `SurfaceName` type.
+
 ## 0.1.2
 
 ### Patch Changes
